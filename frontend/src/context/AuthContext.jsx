@@ -1,19 +1,13 @@
-import {createContext, useMemo, useReducer} from 'react';
+import {createContext, useEffect, useMemo, useReducer} from 'react';
 export const AuthContext = createContext();
 export const authReducer = (state, action) => {
   // action is either type and payload
   switch (action.type) {
     // action type
     case 'LOGIN':
-      return {
-        // action payload
-        workouts: action.payload
-      };
+      return {user: action.payload};
     case 'LOGOUT':
-      return {
-        user: null
-      };
-
+      return {user: null};
     default:
       return state;
   }
@@ -25,6 +19,15 @@ export const AuthContextProvider = ({children}) => {
     () => ({...state, dispatch}),
     [state, dispatch]
   );
+  // check if we have user add local storage
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user) {
+      dispatch({type: 'LOGIN', payload: user});
+    }
+  }, []);
+
   return (
     <AuthContext.Provider value={valueProvider}>
       {/* children is App components we wrap in */}
