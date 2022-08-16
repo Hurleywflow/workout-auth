@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const workoutsRoutes = require('./routes/workouts');
+const usersRoutes = require('./routes/user');
 
 // Create a new express application instance
 const app = express();
@@ -17,7 +18,7 @@ app.use((req, res, next) => {
 
 // Route and specific path 'api/workouts/<now is all workoutsRoutes>'
 app.use('/api/workouts', workoutsRoutes);
-
+app.use('/api/users', usersRoutes);
 
 app.use(cors());
 

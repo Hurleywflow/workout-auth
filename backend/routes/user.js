@@ -8,5 +8,5 @@ const {signupUser, loginUser} = require('../controllers/userController');
 router.post('/login', loginUser);
 
 // register route
-router.post('/register', signupUser);
+router.post('/signup', signupUser);
 module.exports = router;
