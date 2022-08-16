@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Invote a new Schema object
+// Invoke a new Schema object
 const workoutSchema = new Schema({
   title: {
     type: String,

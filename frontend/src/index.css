@@ -114,3 +114,18 @@ div.error {
 input.error {
   border: 1px solid var(--error);
 }
+
+/* truncate */
+.truncate {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line-clamp: 3; */
+.truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

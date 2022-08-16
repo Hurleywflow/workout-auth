@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 
 // components
 import WorkoutDetails from '../components/WorkoutDetails';
@@ -18,14 +18,14 @@ const Home = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='home'>
       <div className='workouts'>
         {workouts &&
           workouts.map((workout) => (
-            <WorkoutDetails key={workout.id} workout={workout} />
+            <WorkoutDetails key={workout._id} workout={workout} />
           ))}
       </div>
       <WorkoutForm />
