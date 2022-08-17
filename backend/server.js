@@ -1,5 +1,7 @@
+/* eslint-disable no-global-assign */
 // @ts-nocheck
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -21,6 +23,24 @@ app.use('/api/workouts', workoutsRoutes);
 app.use('/api/users', usersRoutes);
 
 app.use(cors());
+
+
+//! REST API deployment
+__dirname = path.resolve();
+if (process.env.NODE_ENV === 'production') {
+  // server path join to public folder for deployment
+  app.use(express.static(path.join(__dirname, 'public')));
+
+  app.get('*', (req, res) => {
+    // public folder is used for static files after run build, change name and move out of client folder
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.send('Server is running');
+  });
+}
+
 
 // Connect to to database
 mongoose

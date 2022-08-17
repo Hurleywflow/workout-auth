@@ -10,7 +10,8 @@ const useLogout = () => {
     localStorage.removeItem('user');
 
     // dispatch logout action
-    dispatch({type: 'LOGOUT'});
+    dispatch({ type: 'LOGOUT' });
+    // clear all documents from the workouts collection when logout is called
     dispatchWorkouts({type: 'SET_WORKOUTS', payload: null});
   };
 
